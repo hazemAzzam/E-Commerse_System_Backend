@@ -2,3 +2,4 @@ django
 djangorestframework-api-key
 djangorestframework
 django-filter
+gunicorn
