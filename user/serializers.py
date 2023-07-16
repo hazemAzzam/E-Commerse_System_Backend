@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, Serializer, EmailField
+from rest_framework.serializers import ModelSerializer, Serializer, EmailField, CharField
 from .models import Member
 
 class MemberSerializer(ModelSerializer):
@@ -25,3 +25,4 @@ class MemberSerializer(ModelSerializer):
     
 class Recover_Password_Serializer(Serializer):
     email = EmailField(required=True)
+    password = CharField(required=False)

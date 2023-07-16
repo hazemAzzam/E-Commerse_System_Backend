@@ -25,3 +25,4 @@ class Member(PermissionsMixin, AbstractBaseUser):
     
 class Recover_Code(models.Model):
     code = models.CharField(max_length=50)
+    email = models.EmailField()

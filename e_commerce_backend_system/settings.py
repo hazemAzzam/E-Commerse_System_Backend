@@ -205,4 +205,4 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = False
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS = '*'
+CSRF_TRUSTED_ORIGINS = ['https://e-commersesystembackend-production.up.railway.app', 'http://127.0.0.1:8000']

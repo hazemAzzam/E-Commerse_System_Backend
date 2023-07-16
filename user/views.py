@@ -4,10 +4,10 @@ from rest_framework.response import Response
 from rest_framework_api_key.permissions import HasAPIKey
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.decorators import action
-from e_commerce_backend_system.customs import generate_code_with_email, decode_code
+from e_commerce_backend_system.customs import generate_random_number
 from django.core.mail import EmailMessage
 from .models import Recover_Code
-
+from rest_framework.serializers import ValidationError
 
 from django.core.mail import send_mail
 
@@ -30,31 +30,39 @@ class MemberView(ModelViewSet):
         data = request.data
         email = data['email']
 
-        code = generate_code_with_email(email)
+        code = generate_random_number(5)
 
-        Recover_Code.objects.create(code=code)
+        Recover_Code.objects.create(code=code, email=email)
 
         subject = 'Recover password'
-        body = f'please follow this link to reset your password http://127.0.0.1:8000/reset_password/{code}/'
+        body = f'please use this code {code} to reset your password'
         from_email = "worksmy147@gmail.com"
         to_email = [f'{email}']
 
         send_mail(subject=subject, message=body, from_email=from_email, recipient_list=to_email)
        
 
-        return Response("Email Sent")
+        return Response({"message": "Email Sent!"})
 
-    @action(detail=True, methods=['POST'])
-    def reset_password(self, request, pk=None, **kwargs):
+    @action(detail=False, methods=['POST'])
+    def reset_password(self, request, **kwargs):
         data = request.data
-        if Recover_Code.objects.filter(code=pk).count() != 0:
-            decoded_token = decode_code(pk)
-            email = decoded_token['email']
+        code = data['code']
+        password = data['password']
+        if Recover_Code.objects.filter(code=code).count() != 0:
+            try:
+                recover_code = Recover_Code.objects.get(code=code)
+            except:
+                raise ValidationError({"message": "this code is invalid!"})
+            email = recover_code.email
             password = data['password']
             
+            
             member = Member.objects.get(email=email)
-            member.objects.set_password(password)
+            member.set_password(password)
             member.save()
+
+            recover_code.delete()
 
             return Response({"message": "Password changed"})
         
@@ -68,7 +76,7 @@ class MemberView(ModelViewSet):
             permission_classes = [HasAPIKey, IsAdminUser, IsAccountOwner]
         elif self.action == 'list':
             permission_classes = [HasAPIKey, IsAdminUser]
-        elif self.action == 'recover_password':
+        elif self.action == 'recover_password' or self.action == 'reset_password':
             permission_classes = [HasAPIKey]
         else:
             permission_classes = [HasAPIKey, IsAuthenticated, IsAdminUser]

@@ -250,3 +250,14 @@ def decode_code(code):
     except jwt.InvalidTokenError:
         # Handle the case when the code is invalid or tampered with
         return None
+
+import random
+
+def generate_random_number(length=6):
+    # Generate a list of random digits
+    random_digits = [str(random.randint(0, 9)) for _ in range(length)]
+
+    # Join the digits to form a string
+    random_number = ''.join(random_digits)
+
+    return random_number
