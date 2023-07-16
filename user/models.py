@@ -1,14 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .managers import MemberManager
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 # Create your models here.
 class Member(PermissionsMixin, AbstractBaseUser):
     email = models.EmailField(unique=True)
-    fname = models.CharField(max_length=50)
-    minit = models.CharField(max_length=50, null=True, blank=True)
-    lname = models.CharField(max_length=50, null=True, blank=True)
-    dob = models.DateField(null=True, blank=True)
+    name = models.CharField(max_length=50)
+    
     picture = models.ImageField(upload_to='images/', null=True, blank=True)
 
     is_staff = models.BooleanField(default=False)
@@ -16,9 +16,12 @@ class Member(PermissionsMixin, AbstractBaseUser):
     date_joined = None
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['fname']
+    REQUIRED_FIELDS = ['name']
 
     objects = MemberManager()
 
     def __str__(self):
         return self.email
+    
+class Recover_Code(models.Model):
+    code = models.CharField(max_length=50)

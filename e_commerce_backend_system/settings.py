@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-mvh$ra@&g+g(%b!r*0u7ok67=(bm3_tzxrnja_)pmru4xl$s9o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django_filters',
     'api',
     'user',
+    'shipping_address',
+    'customer'
 ]
 
 API_KEY_CUSTOM_HEADER = "HTTP_X_API_KEY"
@@ -187,3 +189,20 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user.Member'
+
+
+# Email configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'worksmy147@gmail.com'
+EMAIL_HOST_PASSWORD = 'lobyriopnndllewx'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = False
+CORS_ALLOW_ALL_ORIGINS = True
+CSRF_TRUSTED_ORIGINS = '*'
