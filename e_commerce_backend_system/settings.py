@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework_api_key',
     'rest_framework',
     'django_filters',
+    'api',
+    'user',
 ]
 
 API_KEY_CUSTOM_HEADER = "HTTP_X_API_KEY"
@@ -90,7 +92,7 @@ SIMPLE_JWT = {
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework_api_key.permissions.HasAPIKey',
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': ( 
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -183,3 +185,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'user.Member'
