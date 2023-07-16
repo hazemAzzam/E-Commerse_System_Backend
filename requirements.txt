@@ -3,4 +3,4 @@ djangorestframework-api-key
 djangorestframework
 django-filter
 gunicorn
-rest_framework_simplejwt
+djangorestframework-simplejwt
