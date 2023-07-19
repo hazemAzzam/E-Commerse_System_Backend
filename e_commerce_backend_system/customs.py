@@ -1,5 +1,6 @@
 from rest_framework.serializers import *
 from rest_framework.pagination import *
+import random
 
 class ForwardRelationSerializer(ModelSerializer):
     def create(self, validated_data):
@@ -173,7 +174,14 @@ class ComplexSerializer(ForwardRelationSerializer):
         instance = super().update(instance, fields)
         return instance
 
+def generate_random_number(length=6):
+    # Generate a list of random digits
+    random_digits = [str(random.randint(0, 9)) for _ in range(length)]
 
+    # Join the digits to form a string
+    random_number = ''.join(random_digits)
+
+    return random_number
     
 
 class Site_Pagination(PageNumberPagination):
