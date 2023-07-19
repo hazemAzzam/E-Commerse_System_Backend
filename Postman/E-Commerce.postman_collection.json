@@ -1,0 +1,568 @@
+{
+	"info": {
+		"_postman_id": "86f802af-7025-4184-aa8a-56d2b6ee0d4e",
+		"name": "E-Commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26275557",
+		"_collection_link": "https://lively-trinity-888959.postman.co/workspace/My-Workspace~ca388050-fc4b-449c-8684-98fb13f1e4f5/collection/26275557-86f802af-7025-4184-aa8a-56d2b6ee0d4e?action=share&creator=26275557&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Tokens",
+			"item": [
+				{
+					"name": "access token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X_Api_Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X_Access_Token",
+								"value": "Bearer {{access_token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"hazemmohamed9194@gmail.com\",\r\n    \"password\": \"recovered\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/token/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"token",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4OTU1NTg0MiwiaWF0IjoxNjg5NDY5NDQyLCJqdGkiOiJlMTVmN2E0OTBmMjg0NjM0ODJjMWRiODhjNDMzNTAxMyIsInVzZXJfaWQiOjF9.bPoxxoI6GdCKlnTobbUmKlRwqB9d08z3NDdfwa8yh0Y\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/token/refresh/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"token",
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "create member",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Api-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"hazem\",\r\n    \"email\": \"hazemmohamed9194@gmail.com\",\r\n    \"password\": \"admin\",\r\n    \"is_staff\": true,\r\n    \"is_superuser\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/members/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"members",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recover_password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Api-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Access-Token",
+								"value": "Bearer {{access_token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"hazemmohamed9194@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/members/recover_password/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"members",
+								"recover_password",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update member",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "list members",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Api-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Access-Token",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/members/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"members",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete account",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Api-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Access-Token",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/members/2/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"members",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset_password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Api-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Access-Token",
+								"value": "Bearer {{access_token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"96103\",\r\n    \"password\": \"recovered\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/members/reset_password/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"members",
+								"reset_password",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "create customer profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Api-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Access-Token",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"preferred_department\": \"Men\",\r\n    \"height\": 12,\r\n    \"weight_min\": 12,\r\n    \"weight_max\": 12,\r\n    \"age_min\": 12,\r\n    \"age_max\": 12,\r\n    \"department_preference\": {\r\n        \"shoulders\": \"Narrow\",\r\n        \"waist\": \"Narrow\",\r\n        \"legs\": \"Narrow\",\r\n        \"shoes_size\": 12,\r\n        \"top_style_size\": \"XS\",\r\n        \"bottom_style_size_waist\": 12,\r\n        \"bottom_style_size_inseam\": 12,\r\n        \"men_department\": {\r\n            \"chest\": \"Narrow\",\r\n            \"shoes_width\": \"Wide\"\r\n        },\r\n        \"women_department\": {\r\n            \"hips\": \"Narrow\",\r\n            \"shoes_width\": \"Narrow\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/customers/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update customer profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Api-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Access-Token",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"preferred_department\": \"Men\",\r\n    \"height\": 12,\r\n    \"weight_min\": 12,\r\n    \"weight_max\": 55,\r\n    \"age_min\": 12,\r\n    \"age_max\": 12,\r\n    \"department_preference\": {\r\n        \"shoulders\": \"Narrow\",\r\n        \"waist\": \"Narrow\",\r\n        \"legs\": \"Narrow\",\r\n        \"shoes_size\": 12,\r\n        \"top_style_size\": \"XS\",\r\n        \"bottom_style_size_waist\": 12,\r\n        \"bottom_style_size_inseam\": 12,\r\n        \"men_department\": {\r\n            \"chest\": \"Narrow\",\r\n            \"shoes_width\": \"Wide\"\r\n        },\r\n        \"women_department\": {\r\n            \"hips\": \"Narrow\",\r\n            \"shoes_width\": \"Narrow\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/customers/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list customers profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Api-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Access-Token",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/customers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve customer profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Api-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Access-Token",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/customers/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shipping Addresses",
+			"item": [
+				{
+					"name": "create shipping address",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Api-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Access-Token",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"country\": \"Egypt\",\r\n    \"full_name\": \"Hazem Mohamed Azzam\",\r\n    \"phone_number\": \"01142221039\",\r\n    \"address\": \"block 25\",\r\n    \"city\": \"Badr City\",\r\n    \"state\": \"Cairo\",\r\n    \"zip_code\": \"14545\",\r\n    \"delivery_instructions\": {\r\n        \"property_type\": \"House\",\r\n        \"leave_at\": \"Front door\",\r\n        \"address_availability\": [\r\n            {\r\n                \"day\": \"Saturday\",\r\n                \"start_at\": \"12:00\",\r\n                \"stop_at\": \"20:00\"\r\n            },\r\n            {\r\n                \"day\": \"Thursday\",\r\n                \"start_at\": \"12:00\",\r\n                \"stop_at\": \"20:00\"\r\n            }\r\n        ],\r\n        \"recieve_on_federal_holidays\": true,\r\n        \"security_code\": null,\r\n        \"call_box\": null,\r\n        \"key_required\": true,\r\n        \"additional_instructions\": \"Plase leave it if you didn't find me and leave.\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/shipping_addresses/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"shipping_addresses",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list shipping addresses",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Api-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Access-Token",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/shipping_addresses/?customer=1&id=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"shipping_addresses",
+								""
+							],
+							"query": [
+								{
+									"key": "customer",
+									"value": "1"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit shipping address",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Api-Key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Access-Token",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"country\": \"Egypt\",\r\n    \"full_name\": \"Hazem Mohamed Azzam\",\r\n    \"phone_number\": \"01142221039\",\r\n    \"address\": \"block 25\",\r\n    \"city\": \"Badr City\",\r\n    \"state\": \"Cairo\",\r\n    \"zip_code\": \"14545\",\r\n    \"delivery_instructions\": {\r\n        \"property_type\": \"House\",\r\n        \"leave_at\": \"Front door\",\r\n        \"address_availability\": [\r\n            {\r\n                \"day\": \"Saturday\",\r\n                \"start_at\": \"12:00\",\r\n                \"stop_at\": \"20:00\"\r\n            },\r\n            {\r\n                \"day\": \"Thursday\",\r\n                \"start_at\": \"12:00\",\r\n                \"stop_at\": \"20:00\"\r\n            }\r\n        ],\r\n        \"recieve_on_federal_holidays\": true,\r\n        \"security_code\": null,\r\n        \"call_box\": null,\r\n        \"key_required\": true,\r\n        \"additional_instructions\": \"Plase leave it if you didn't find me and leave.\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/shipping_addresses/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"shipping_addresses",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
