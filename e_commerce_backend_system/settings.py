@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'api',
     'user',
     'shipping_address',
-    'customer'
+    'customer',
+    'item'
 ]
 
 API_KEY_CUSTOM_HEADER = "HTTP_X_API_KEY"
